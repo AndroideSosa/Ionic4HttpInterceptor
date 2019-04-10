@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-icon slot="icon-only" name="close" (click)="dismissModal()" color="primary"></ion-icon>
+      </ion-buttons>
+    <ion-title color="primary" text-center>{{ areaInfo.name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item *ngIf="roleUser=='admin'">
+    <ion-label position="floating" color="primary">Nombre del área</ion-label>
+    <ion-input color="primary" type="text" maxlength="35" value="{{editAreaData.name}}" (change)='onChangeName($event.target.value)' (ionFocus)='activateEditButton()'></ion-input>
+  </ion-item>
+  <ion-item *ngIf="roleUser=='user'">
+    <ion-label position="floating" color="primary">Nombre del área</ion-label>
+    <ion-input color="primary" type="text" maxlength="35" value="{{editAreaData.name}}" readonly="true"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="roleUser=='admin'">
+    <ion-label position="floating" color="primary">Descripción del área</ion-label>
+    <ion-textarea color="primary" type="text" rows="2" maxlength="80" value="{{editAreaData.description}}" (change)='onChangeDescription($event.target.value)' (ionFocus)='activateEditButton()'></ion-textarea>
+  </ion-item>
+  <ion-item *ngIf="roleUser=='user'">
+    <ion-label position="floating" color="primary">Descripción del área</ion-label>
+    <ion-textarea color="primary" type="text" rows="2" maxlength="80" value="{{editAreaData.description}}" readonly="true"></ion-textarea>
+  </ion-item>
+  <br>
+  <ion-button expand="block" (click)="updateArea()" [disabled]="!isenabled" *ngIf="roleUser=='admin'"> Editar</ion-button>
+</ion-content>

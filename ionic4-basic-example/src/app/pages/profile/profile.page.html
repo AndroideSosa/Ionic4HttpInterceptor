@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>    
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon slot="icon-only" name="log-out" color="primary" (click)="logout()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="editProfileForm">
+        <ion-item>
+          <ion-label position="floating" color="primary">Nombre</ion-label>
+          <ion-input formControlName="editName" color="medium" type="text" name="user" value="{{userData.name}}" (change)='onChangeName($event.target.value)' (ionFocus)='activateEditButton()' readonly=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating" color="primary">Correo electrónico</ion-label>
+          <ion-input formControlName="editEmail" color="medium" type="email" name="email" value="{{userData.email}}" (change)='onChangeEmail($event.target.value)' (ionFocus)='activateEditButton()' readonly=true></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating" color="primary">Extensión de teléfono (4 números)</ion-label>
+            <ion-input formControlName="editPhone" color="medium" type="number" name="phone" value="{{userData.phone}}" (change)='onChangePhone($event.target.value)' (ionFocus)='activateEditButton()' readonly=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating" color="primary">Empleo</ion-label>
+          <ion-input formControlName="editJob" color="medium" type="text" name="job" value="{{userData.job}}" (change)='onChangeJob($event.target.value)' (ionFocus)='activateEditButton()' readonly=true></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating" color="primary">Habilidades</ion-label>
+            <ion-input formControlName="editSkills" color="medium" type="text" name="skills" maxlength="80" value="{{userData.skills}}" (change)='onChangeSkills($event.target.value)' (ionFocus)='activateEditButton()' readonly=true></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating" color="primary">Área de trabajo</ion-label>
+          <ion-input formControlName="editArea" color="medium" type="text" name="area" value="{{userData.area}}" readonly=true></ion-input>
+      </ion-item>
+        <ion-item>
+            <ion-label position="floating" color="primary">Rol</ion-label>
+            <ion-input formControlName="editRole" color="medium" type="text" name="role" value="{{rolesUser}}" readonly=true></ion-input>
+        </ion-item>
+        <br>
+      </form>
+</ion-content>

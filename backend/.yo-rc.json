@@ -1,0 +1,43 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "mx.infotec.intranet",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "5.8.1",
+    "applicationType": "microservice",
+    "baseName": "Intranet",
+    "packageName": "mx.infotec.intranet",
+    "packageFolder": "mx/infotec/intranet",
+    "serverPort": "8484",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MTIyZDQxZWFmYWVjMzE1NDg1NDhhMGEwYTA4ZDc5NDE2YTg3NTFmYTdiNmQ4N2NjOWYyN2RlYmZiMTdiYTY5NGNmZjhhYzQ3MzJkZGNiZDA1Y2Q5NjAyMGU1MjI2ZDMyZDQ2OTRjZDMxNmI1MDcwYzNjYmUzZGFkOTRhZDhiNzU=",
+    "testFrameworks": [
+      "gatling"
+    ],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "en",
+    "languages": [
+      "en",
+      "es"
+    ],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

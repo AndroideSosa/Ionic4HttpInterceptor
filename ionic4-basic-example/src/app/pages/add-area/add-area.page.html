@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-icon slot="icon-only" name="close" (click)="dismissModal()" color="primary"></ion-icon>
+      </ion-buttons>
+    <ion-title color="primary" text-center> Agregar nueva área</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <form [formGroup]="addAreaForm">
+        <ion-item>
+          <ion-label position="floating" color="primary">Nombre del área</ion-label>
+          <ion-input formControlName="name" color="primary" type="text" clearInput></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating" color="primary">Descripcion del área</ion-label>
+          <ion-textarea formControlName= "description" type="text" rows="2" maxlength="80" color="primary" clearTextArea></ion-textarea>
+        </ion-item>
+        <br>
+        <ion-button expand="block" [disabled]="!addAreaForm.valid" (click)="createArea()">Guardar</ion-button>
+    </form>
+</ion-content>

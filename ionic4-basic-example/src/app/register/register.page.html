@@ -1,0 +1,90 @@
+<ion-content padding>
+  <img src="assets/imgs/logoInfotec.jpg"> 
+    <form [formGroup]="registerForm">
+        <ion-item>
+          <ion-label position="floating" color="primary">Nombre</ion-label>
+          <ion-input formControlName="name" type="text" maxlength="50" clearInput></ion-input>
+        </ion-item>
+        <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.name">
+              <div class="error-message" *ngIf="registerForm.get('name').hasError(error.type) && (registerForm.get('name').dirty || registerForm.get('name').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Extensión de teléfono (4 números)</ion-label>
+          <ion-input formControlName="phone" type="tel" clearInput></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.phone">
+            <div class="error-message" *ngIf="registerForm.get('phone').hasError(error.type) && (registerForm.get('phone').dirty || registerForm.get('phone').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Empleo</ion-label>
+          <ion-textarea formControlName="job" type="text" rows="2" maxlength="80"></ion-textarea>
+        </ion-item>
+        <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.job">
+              <div class="error-message" *ngIf="registerForm.get('job').hasError(error.type) && (registerForm.get('job').dirty || registerForm.get('job').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Habilidades</ion-label>
+          <ion-textarea formControlName="skills" type="text" rows="5" maxlength="150"></ion-textarea>
+        </ion-item>
+        <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.skills">
+              <div class="error-message" *ngIf="registerForm.get('skills').hasError(error.type) && (registerForm.get('skills').dirty || registerForm.get('skills').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+        <ion-item>
+            <ion-label position="floating" color="primary">Área de trabajo</ion-label>
+            <ion-select formControlName="area">
+             <ion-select-option *ngFor="let area of areas" [value]="area">{{area}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.area">
+              <div class="error-message" *ngIf="registerForm.get('area').hasError(error.type) && (registerForm.get('area').dirty || registerForm.get('area').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Correo electrónico</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.email">
+              <div class="error-message" *ngIf="registerForm.get('email').hasError(error.type) && (registerForm.get('email').dirty || registerForm.get('email').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Contraseña</ion-label>
+          <ion-input formControlName="password" type="{{type}}"></ion-input>
+          <ion-icon  *ngIf="!showPass" slot="end" name="eye" color="primary" (click)="showPassword()"></ion-icon>
+          <ion-icon  *ngIf="showPass" slot="end" name="eye-off" color="primary" (click)="showPassword()"></ion-icon>
+        </ion-item>
+        <div class="error-messages">
+            <ng-container *ngFor="let error of error_messages.password">
+              <div class="error-message" *ngIf="registerForm.get('password').hasError(error.type) && (registerForm.get('password').dirty || registerForm.get('password').touched)">
+                {{ error.message }}
+              </div>
+            </ng-container>
+          </div>
+        <br>
+        <ion-button expand="block" [disabled]="!registerForm.valid" (click)="signUpUser()">Registrarse</ion-button>
+      </form>
+      <br>
+      <ion-button expand="block" color="danger" [routerLink]="'/login/'">Ya tengo una cuenta</ion-button>
+</ion-content>

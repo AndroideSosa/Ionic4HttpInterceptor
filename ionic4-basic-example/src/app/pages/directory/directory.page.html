@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button>    
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end" *ngIf="showButtons">
+        <ion-icon slot="icon-only" name="add" color="primary" (click)="showAddAreaModal()"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon slot="icon-only" name="log-out" color="primary" (click)="logout()"></ion-icon>
+    </ion-buttons>
+    <ion-title color="primary">Áreas de INFOTEC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-row >
+        <ion-col *ngFor="let area of areas" size="6">
+            <ion-card>
+                <ion-card-header>
+                  <ion-card-title text-center color="primary">{{area.name}}</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <img src="assets/imgs/logoInfotec.jpg"> 
+                    <ion-button color="primary" size="small" (click)="goToUsersArea(area.name)">Empleados</ion-button>
+                </ion-card-content>
+                <div class="center" *ngIf="showButtons">
+                    <ion-button color="success" size="small" (click)="showEditAreaModal(area,'admin')">Editar área</ion-button>
+                    <ion-button color="danger" size="small" (click)="showDeleteAlert(area.name, area.id)">Eliminar área</ion-button>
+                </div>
+                <div class="center" *ngIf="!showButtons">
+                    <ion-button color="success" size="small" (click)="showEditAreaModal(area,'user')">Detalle de área</ion-button>
+                </div>
+              </ion-card>
+        </ion-col>
+    </ion-row>
+</ion-content>

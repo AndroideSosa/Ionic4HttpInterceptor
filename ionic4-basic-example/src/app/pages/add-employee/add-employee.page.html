@@ -1,0 +1,94 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-icon slot="icon-only" name="close" (click)="dismissModal()" color="primary"></ion-icon>
+        </ion-buttons>
+      <ion-title color="primary" text-center> Agregar nuevo empleado</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+<ion-content padding>
+    <form [formGroup]="addUserForm">
+        <ion-item>
+          <ion-label position="floating" color="primary">Nombre</ion-label>
+          <ion-input formControlName="name" type="text" maxlength="50" clearInput></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.name">
+            <div class="error-message" *ngIf="addUserForm.get('name').hasError(error.type) && (addUserForm.get('name').dirty || addUserForm.get('name').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Extensión de teléfono (4 números)</ion-label>
+          <ion-input formControlName="phone" type="tel" clearInput></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.phone">
+            <div class="error-message" *ngIf="addUserForm.get('phone').hasError(error.type) && (addUserForm.get('phone').dirty || addUserForm.get('phone').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Empleo</ion-label>
+          <ion-textarea formControlName="job" type="text" rows="2" maxlength="80"></ion-textarea>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.job">
+            <div class="error-message" *ngIf="addUserForm.get('job').hasError(error.type) && (addUserForm.get('job').dirty || addUserForm.get('job').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Habilidades</ion-label>
+          <ion-textarea formControlName="skills" type="text" rows="5" maxlength="150"></ion-textarea>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.skills">
+            <div class="error-message" *ngIf="addUserForm.get('skills').hasError(error.type) && (addUserForm.get('skills').dirty || addUserForm.get('skills').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Rol</ion-label>
+          <ion-select formControlName="role" multiple="true" cancelText="Cancelar" okText="Aceptar">
+           <ion-select-option *ngFor="let role of roles" [value]="role.value">{{role.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.role">
+            <div class="error-message" *ngIf="addUserForm.get('role').hasError(error.type) && (addUserForm.get('role').dirty || addUserForm.get('role').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Correo electrónico</ion-label>
+          <ion-input formControlName="email" type="email"></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.email">
+            <div class="error-message" *ngIf="addUserForm.get('email').hasError(error.type) && (addUserForm.get('email').dirty || addUserForm.get('email').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+        <ion-item>
+          <ion-label position="floating" color="primary">Contraseña</ion-label>
+          <ion-input formControlName="password" type="text"></ion-input>
+        </ion-item>
+        <div class="error-messages">
+          <ng-container *ngFor="let error of error_messages.password">
+            <div class="error-message" *ngIf="addUserForm.get('password').hasError(error.type) && (addUserForm.get('password').dirty || addUserForm.get('password').touched)">
+              {{ error.message }}
+            </div>
+          </ng-container>
+        </div>
+        <br>
+        <ion-button expand="block" [disabled]="!addUserForm.valid" (click)="createUser()">Guardar</ion-button>
+      </form>
+</ion-content>

@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-icon slot="icon-only" name="close" color="primary" (click)="dismissModal()"></ion-icon>
+      </ion-buttons>
+    <ion-title text-center color="primary"> {{userInfo.name}} </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="editUserForm">
+        <ion-item *ngIf="userRole=='admin'">
+          <ion-label position="floating" color="primary">Nombre</ion-label>
+          <ion-input formControlName="editName" color="primary" type="text" name="user" value="{{userInfo.name}}" (change)='onChangeName($event.target.value)' (ionFocus)='activateEditButton()'></ion-input>
+        </ion-item>
+        <ion-item *ngIf="userRole=='user'">
+          <ion-label position="floating" color="primary">Nombre</ion-label>
+          <ion-input color="primary" type="text" name="user" value="{{userInfo.name}}" readonly="true"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="userRole=='admin'">
+          <ion-label position="floating" color="primary">Correo electrónico</ion-label>
+          <ion-input formControlName="editEmail" color="primary" type="email" name="email" value="{{userInfo.email}}" (change)='onChangeEmail($event.target.value)' (ionFocus)='activateEditButton()'></ion-input>
+        </ion-item>
+        <ion-item *ngIf="userRole=='user'">
+          <ion-label position="floating" color="primary">Correo electrónico</ion-label>
+          <ion-input color="primary" type="email" name="email" value="{{userInfo.email}}" readonly="true"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="userRole=='admin'">
+            <ion-label position="floating" color="primary">Extensión de teléfono (4 números)</ion-label>
+            <ion-input formControlName="editPhone" color="primary" type="number" name="phone" value="{{userInfo.phone}}" (change)='onChangePhone($event.target.value)' (ionFocus)='activateEditButton()'></ion-input>
+        </ion-item>
+        <ion-item *ngIf="userRole=='user'">
+          <ion-label position="floating" color="primary">Extensión de teléfono (4 números)</ion-label>
+          <ion-input color="primary" type="number" name="phone" value="{{userInfo.phone}}" readonly="true"></ion-input>
+      </ion-item>
+        <ion-item *ngIf="userRole=='admin'">
+          <ion-label position="floating" color="primary">Empleo</ion-label>
+          <ion-input formControlName="editJob" color="primary" type="text" name="job" value="{{userInfo.job}}" (change)='onChangeJob($event.target.value)' (ionFocus)='activateEditButton()'></ion-input>
+        </ion-item>
+        <ion-item *ngIf="userRole=='user'">
+          <ion-label position="floating" color="primary">Empleo</ion-label>
+          <ion-input color="primary" type="text" name="job" value="{{userInfo.job}}" readonly="true"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="userRole=='admin'">
+          <ion-label position="floating" color="primary">Habilidades</ion-label>
+          <ion-textarea formControlName="editSkills" type="text" name="skills" rows="2" maxlength="80" color="primary" value="{{userInfo.skills}}" (change)='onChangeSkills($event.target.value)' (ionFocus)='activateEditButton()'></ion-textarea>
+        </ion-item>
+        <ion-item *ngIf="userRole=='user'">
+          <ion-label position="floating" color="primary">Habilidades</ion-label>
+          <ion-textarea type="text" name="skills" rows="2" maxlength="80" color="primary" value="{{userInfo.skills}}" readonly="true"></ion-textarea>
+        </ion-item>
+        <ion-item *ngIf="userRole=='admin'">
+          <ion-label position="floating" color="primary">Área de trabajo</ion-label>
+          <ion-select placeholder="{{areaUser}}" (ionChange)="onSelectChangeArea($event)"(ionFocus)='activateEditButton()' formControlName="editArea">
+           <ion-select-option *ngFor="let area of areas" [value]="area.name">{{area.name}}</ion-select-option>
+          </ion-select>
+      </ion-item>
+      <ion-item *ngIf="userRole=='user'">
+        <ion-label position="floating" color="primary">Área de trabajo</ion-label>
+        <ion-input color="primary" type="text" name="area" value="{{areaUser}}" readonly="true"></ion-input>
+      </ion-item>
+        <ion-item *ngIf="userRole=='admin'">
+            <ion-label position="floating" color="primary">Rol</ion-label>
+            <ion-select multiple="true" placeholder="{{rolesUser}}" (ionChange)="onSelectChangeAuthorities($event)"(ionFocus)='activateEditButton()' formControlName="editRole">
+              <ion-select-option *ngFor="let role of roles" [value]="role.value">{{role.name}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item *ngIf="userRole=='user'">
+          <ion-label position="floating" color="primary">Área de trabajo</ion-label>
+          <ion-input color="primary" type="text" name="area" value="{{rolesUser}}" readonly="true"></ion-input>
+        </ion-item>
+        <br>
+        <ion-button expand="block" [disabled]="!isenabled" (click)="updateUser()" *ngIf="userRole=='admin'">Edit</ion-button>
+      </form>
+</ion-content>
